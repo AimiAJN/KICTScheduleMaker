@@ -1,22 +1,64 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput, Button, Navigator} from 'react-native';
+import {StyleSheet, Text, View, Image, Button} from 'react-native';
+import {createStackNavigator} from 'react-navigation';
 
-export default class App extends Component {
-
-constructor(){
-  super();
-  this.state={
-
+class StartScreen extends React.Component {
+  static navigationOptions = {
+    title: 'StartPage',
   };
+  render() {
+    const {navigate} = this.props.navigation;
+    return(
+      <View style={styles.container}>
+        <Image source={{uri:'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png'}} style={{width: 100,  height: 100}}/>
+        <Text></Text>
+        <Text style={styles.title} onPress={ () => navigate('Home')}>KICT Student Schedule Maker</Text>
+      </View>
+    ); 
+  }
 }
 
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Home',
+  };
+  render() {
+    const {navigate} = this.props.navigation;
+    return(
+      <View style={styles.container}>
+        <Button style={styles.button} onPress={() => navigate('Display')} title="Submit"></Button>
+      </View>
+    ); 
+  }
+}
+
+class DisplayScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Display',
+  };
+  render() {
+    //const {navigate} = this.props.navigation;
+    return(
+      <View style={styles.container}>
+        <Text>This is display page</Text>
+      </View>
+    ); 
+  }
+}
+
+const NavigationApp = createStackNavigator({
+  StartPage: {screen: StartScreen},
+  Home: {screen: HomeScreen},
+  Display: {screen: DisplayScreen},
+});
+
+//const AppCon = createAppContainer(NavigationApp);
+
+export default class App extends Component {
 render() {
     return (
-      <View style={styles.container}>
-        <Image source={require('http://pixsector.com/cache/0266455f/ava13c3ac53812cde1b88.png')}></Image>
-        <Text></Text>
-        <Text style={styles.title}>KICT Student Shedule Maker</Text>
-    </View>
+      <NavigationApp />
+      //<AppCon />
     );
   }
 }
@@ -38,4 +80,9 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  button: {
+    backgroundColor: 'blue',
+    width: 30,
+    height: 10,
+  }
 });
