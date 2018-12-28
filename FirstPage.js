@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { Platform,StyleSheet, Text, View,Alert, Button,YellowBox, Navigator} from 'react-native';
 import {Menu,MenuProvider, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
 
-export default class HomeActivity extends Component {
+export default class FirstPage extends Component {
   constructor(props){
     super(props);
     YellowBox.ignoreWarnings([
